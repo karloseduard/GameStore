@@ -1,0 +1,16 @@
+// GET All games
+GET http://localhost:5190/games
+###
+//GET ID
+GET http://localhost:5190/games/4
+
+###
+POST http://localhost:5190/games
+Content-Type: application/json
+
+{
+    "name": "Mario Bros",
+    "Genre":"Platformer",
+    "price": 59.99,
+    "releaseDate":"2023-10-20"
+}
