@@ -26,3 +26,4 @@ C:\Users\Karlos Eduardo\OneDrive\Documentos\Estudos de .net\GameStore.Api\obj\De
 C:\Users\Karlos Eduardo\OneDrive\Documentos\Estudos de .net\GameStore.Api\obj\Debug\net10.0\GameStore.Api.pdb
 C:\Users\Karlos Eduardo\OneDrive\Documentos\Estudos de .net\GameStore.Api\obj\Debug\net10.0\GameStore.Api.genruntimeconfig.cache
 C:\Users\Karlos Eduardo\OneDrive\Documentos\Estudos de .net\GameStore.Api\obj\Debug\net10.0\ref\GameStore.Api.dll
+C:\Users\Karlos Eduardo\OneDrive\Documentos\Estudos de .net\GameStore.Api\obj\Debug\net10.0\GameStore.Api.sourcelink.json

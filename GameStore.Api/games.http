@@ -14,3 +14,14 @@ Content-Type: application/json
     "price": 59.99,
     "releaseDate":"2023-10-20"
 }
+
+###
+PUT http://localhost:5190/games/1
+Content-Type: application/json
+
+{
+    "name": "Hollow Knight",
+    "genre": "Metroidvania",
+    "price": 20.00,
+    "releaseDate": "2017-02-24"
+}
