@@ -9,59 +9,79 @@ List<GameDto> games = [
         1,
         "Hollow Knight",
         "Metroidvania",
-        60.00M, 
+        60.00M,
         new DateOnly(2017,2,24)),
     new (
         2,
         "Astro Bot",
         "Platformer",
-        59.99M, 
+        59.99M,
         new DateOnly(2024,2,6)),
     new (
         3,
         "Final Fantasy VII Rebirth",
         "RPG",
-        69.99M,  
+        69.99M,
         new DateOnly(2017,9,29))
 ];
 // GET /games
 app.MapGet("/games", () => games);
 // GET /games/id
-app.MapGet("/games/{id}", (int id) => games.Find(game => game.Id == id))
+app.MapGet("/games/{id}", (int id) =>
+{
+    var game = games.Find(game => game.Id == id);
+
+    return game is null ? Results.NotFound() : Results.Ok(game);
+})
 .WithName(GetGameEndPointName);
 // POST /games
 app.MapPost("/games", (CreateGameDto newGame) =>
 {
-     GameDto game = new(
-     games.Count + 1,
-        newGame.Name,
-        newGame.Genre,
-        newGame.Price,
-        newGame.ReleaseDate
-    );
+    GameDto game = new(
+    games.Count + 1,
+       newGame.Name,
+       newGame.Genre,
+       newGame.Price,
+       newGame.ReleaseDate
+   );
 
- games.Add(game);
+    games.Add(game);
 
-    return Results.CreatedAtRoute( GetGameEndPointName , new {id = game.Id}, game);
+    return Results.CreatedAtRoute(GetGameEndPointName, new { id = game.Id }, game);
 }
 
 );
 
-//PUT /game/{id}
+//PUT /games/{id}
 
 app.MapPut("/games/{id}", (int id, UpdateGameDto updateGame) =>
 {
     var index = games.FindIndex(game => game.Id == id);
 
-    games[index] = new GameDto(
-        id,
-        updateGame.Name,
-        updateGame.Genre,
-        updateGame.Price,
-        updateGame.ReleaseDate
-    );
+    if (index == -1)
+    {
+        return Results.NotFound();
+    }
+        games[index] = new GameDto(
+         id,
+         updateGame.Name,
+         updateGame.Genre,
+         updateGame.Price,
+         updateGame.ReleaseDate
+     );
+    
+
 
     return Results.NoContent();
 });
+
+// DELETE /games/{id}
+
+app.MapDelete("/games/{id}", (int id) =>
+{
+    games.RemoveAll(game => game.Id == id);
+    return Results.NoContent();
+});
+
 
 app.Run();
