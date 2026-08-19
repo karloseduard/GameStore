@@ -3,7 +3,7 @@ GET http://localhost:5190/games
 
 ###
 //GET ID
-GET http://localhost:5190/games/4
+GET http://localhost:5190/games/1
 
 ###
 
