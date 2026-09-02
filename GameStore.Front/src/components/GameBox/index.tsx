@@ -1,13 +1,15 @@
+import type { ReactElement } from "react"
+
 interface NameInterface {
-    name: string
+    children: ReactElement
 }
 
 
 
-export default function GameBox({ name }: NameInterface) {
+export default function GameBox({ children }: NameInterface) {
     return (
-        <div className="">
-            {name}
+        <div className="border-2 w-40 text-center">
+            {children}
         </div>
     )
 }

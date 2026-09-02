@@ -1,37 +1,34 @@
-import { useEffect, useState } from "react"
-import api from "../api/api"
-import type { Game } from "../types/Game"
+import { useContext} from "react"
 import GameTable from "../components/GameTable"
+import EditModal from "../components/EditModal"
+import { GameContext } from "../context/GameContext"
+import { useGamesId } from "../hook/useGamesId"
+
+
+
 
 export default function Home() {
-    const [games, setGames] = useState<Game[]>()
 
-    useEffect(() => {
-        async function fetchGames() {
-            try {
-                const { data } = await api.get('/games')
-                setGames(data)
+    const { idGame, edit } = useContext(GameContext)
 
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchGames()
+    const { gamesId } = useGamesId(idGame)
+    console.log(gamesId)
 
-    }, [])
 
     return (
         <>
-
             <h1 className="text-3xl font-bold ">
                 Home
             </h1>
             <div>
-                <GameTable/>
-                
-
+                <GameTable />
+                {
+                    edit && gamesId && <EditModal gamesId={gamesId} />
+                }
             </div>
         </>
+
+
     )
 
 }

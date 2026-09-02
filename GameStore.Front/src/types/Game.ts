@@ -1,8 +1,7 @@
 export interface Game{
-    id: number,
+    id: string,
     name: string,
     genre: string,
-    genreId: number,
-    price: number,
-    releaseData:string
+    price: string,
+    releaseDate:string
 }
