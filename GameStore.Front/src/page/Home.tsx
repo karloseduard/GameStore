@@ -3,16 +3,18 @@ import GameTable from "../components/GameTable"
 import EditModal from "../components/EditModal"
 import { GameContext } from "../context/GameContext"
 import { useGamesId } from "../hook/useGamesId"
+import { useGames } from "../hook/useGames"
+import PostModal from "../components/PostModal"
 
 
 
 
 export default function Home() {
 
-    const { idGame, edit } = useContext(GameContext)
+    const { idGame, edit, post } = useContext(GameContext)
 
     const { gamesId } = useGamesId(idGame)
-    console.log(gamesId)
+    const { games, refetch } = useGames();
 
 
     return (
@@ -21,10 +23,15 @@ export default function Home() {
                 Home
             </h1>
             <div>
-                <GameTable />
+                <GameTable games={games}/>
                 {
-                    edit && gamesId && <EditModal gamesId={gamesId} />
+                    
+                    edit && gamesId && ( <EditModal key={gamesId.id} gamesId={gamesId} id={idGame} onSuccess={refetch}/> )
+                    
+                }{
+                    post&&<PostModal onSuccess={refetch}/>
                 }
+                
             </div>
         </>
 

@@ -8,7 +8,7 @@ interface NameInterface {
 
 export default function GameBox({ children }: NameInterface) {
     return (
-        <div className="border-2 w-40 text-center">
+        <div className="flex border-2 w-40 justify-center items-center ">
             {children}
         </div>
     )

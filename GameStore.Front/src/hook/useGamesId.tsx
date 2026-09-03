@@ -4,10 +4,14 @@ import type { Game } from "../types/Game"
 
 
 
-export function useGamesId(id:string) {
+export function useGamesId(id: string) {
     const [gamesId, setGamesId] = useState<Game>()
 
+
+
     useEffect(() => {
+        if (!id) return 
+        
         async function fetchGames() {
             try {
                 const { data } = await api.get(`/games/${id}`)
@@ -17,15 +21,15 @@ export function useGamesId(id:string) {
                 console.log(error)
             }
         }
-        if(id){
-            fetchGames()
-        }
-        
+
+        fetchGames()
+
+
     }, [id])
 
-    
 
-    return{
+
+    return {
         gamesId
     }
 }

@@ -1,11 +1,23 @@
 import { FaPlus } from "react-icons/fa6";
-import { useGames } from "../../hook/useGames";
+
 import Botao from "../Botao";
 import GameBox from "../GameBox";
 import GameLine from "../GameLine/Index";
+import type { Game } from "../../types/Game";
+import { useContext } from "react";
+import { GameContext } from "../../context/GameContext";
 
-export default function GameTable() {
-    const { games } = useGames();
+interface GameTableType{
+    games:Game[]
+}
+
+export default function GameTable({games}:GameTableType) {
+    const { setPost } = useContext(GameContext)
+
+
+    const handlemodelPost = ()=>{
+        setPost(true)
+    }
     return (
         <>
             <div>
@@ -32,7 +44,7 @@ export default function GameTable() {
                     {
                         games.map((e, index) => <GameLine key={index} name={e.name} genre={e.genre} price={e.price} releaseDate={e.releaseDate} id ={e.id} />)
                     }
-                    <Botao><FaPlus /></Botao>
+                    <Botao  onClick={handlemodelPost}><FaPlus /></Botao>
                 </div>
             </div>
         </>
